@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 
 using namespace std;
 int const N = 13;
@@ -14,6 +14,50 @@ bool is_simple(int x) {
         if (x % i == 0)
             return false;
     return true;
+}
+
+//реализация сортировок функцией
+// достаточно просто вызвать их и сам массив будет отсортирован
+void Buble_sort(int* arr) {
+    bool fl = true;
+    for (int i = N; i != 0 && fl; i--) {
+        fl = false;
+        for (int j = 1; j < i ; j++) {
+            if (arr[j] < arr[j - 1]) {
+                int t = arr[j];
+                arr[j] = arr[j - 1];
+                arr[j - 1] = t;
+                fl = true;
+            }
+        }
+    }
+}
+
+void shake_sort(int* arr) {
+    bool fl = true;
+    int left = 0;
+    int right = N - 1;
+    while (left < right && fl) {
+        fl = false;
+        for (int i = left; i < right; i++) {
+            if (arr[i] > arr[i + 1]) {
+                int t = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = t;
+                fl = true;
+            }
+        }
+        right--;
+        for (int i = right; i > left; i--) {
+            if (arr[i] < arr[i - 1]) {
+                int t = arr[i];
+                arr[i] = arr[i - 1];
+                arr[i - 1] = t;
+                fl = true;
+            }
+        }
+        left++; 
+    }
 }
 
 int main() {
@@ -403,4 +447,80 @@ int main() {
     //u[len - 1]++;
     //for (int i = 0; i < N; i++)
     //    cout << u[i] << " ";
+
+    //    
+
+    //бублсорт реализация  функцией
+
+    //int arr[N];
+    //for (int i = 0; i < N; i++) {
+    //    cin >> arr[i];
+    //}
+    ////массив до сортировки
+    //for (int i = 0; i < N; i++) {
+    //    cout << arr[i] << " ";
+    //}
+    //cout << endl;
+    //Buble_sort(arr);
+    ////массив после сортировки
+    //for (int i = 0; i < N; i++) {
+    //    cout << arr[i] << " ";
+    //}
+    ////аналогично с shake_sort
+
+    //реализация без функций
+    // buble_sort
+    //int arr[N];
+    //for (int i = 0; i < N; i++) {
+    //    cin >> arr[i];
+    //}
+    //bool fl = true;
+    //for (int i = N; i != 0 && fl; i--) {
+    //    fl = false;
+    //    for (int j = 1; j < i; j++) {
+    //        if (arr[j] < arr[j - 1]) {
+    //            int t = arr[j];
+    //            arr[j] = arr[j - 1];
+    //            arr[j - 1] = t;
+    //            fl = true;
+    //        }
+    //    }
+    //}
+    //for (int i = 0; i < N; i++) {
+    //    cout << arr[i] << " ";
+    //}
+    //
+    //shake_sort
+    //int arr[N];
+    //for (int i = 0; i < N; i++) {
+    //    cin >> arr[i];
+    //}
+    //bool fl = true;
+    //int left = 0;
+    //int right = N - 1;
+    //while (left < right && fl) {
+    //    fl = false;
+    //    for (int i = left; i < right; i++) {
+    //        if (arr[i] > arr[i + 1]) {
+    //            int t = arr[i];
+    //            arr[i] = arr[i + 1];
+    //            arr[i + 1] = t;
+    //            fl = true;
+    //        }
+    //    }
+    //    right--;
+    //    for (int i = right; i > left; i--) {
+    //        if (arr[i] < arr[i - 1]) {
+    //            int t = arr[i];
+    //            arr[i] = arr[i - 1];
+    //            arr[i - 1] = t;
+    //            fl = true;
+    //        }
+    //    }
+    //    left++;
+    //}
+    //for (int i = 0; i < N; i++) {
+    //    cout << arr[i] << " ";
+    //}
+
 }
