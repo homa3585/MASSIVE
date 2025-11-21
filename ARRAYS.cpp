@@ -522,5 +522,57 @@ int main() {
     //for (int i = 0; i < N; i++) {
     //    cout << arr[i] << " ";
     //}
+    
+    //22
 
+    // с вспомогательным массивом
+    //int arr[N];
+    //int new_arr[N];
+    //int left = 0;
+    //int right = N - 1;
+    //for (int i = 0; i < N; i++)
+    //    cin >> arr[i];
+    //for (int i = 0; i < N; i++) {
+    //    if (arr[i] < 0) {
+    //        new_arr[left] = arr[i];
+    //        left++;
+    //    }
+    //    else {
+    //        new_arr[right] = arr[i];
+    //        right--;
+    //    }
+    //}
+    //for (int i = 0; i < N; i++)
+    //    cout << new_arr[i] << " ";
+    // 
+    // без вспомогательного массива но в любом порядке
+    //int arr[N];
+    //for (int i = 0; i < N; i++)
+    //    cin >> arr[i];
+    //Buble_sort(arr);
+    //for (int i = 0; i < N; i++)
+    //    cout << arr[i] << " ";
+    //
+    // без доп массива и сохраняя порядок
+    //int arr[N];
+    //for (int i = 0; i < N; i++)
+    //    cin >> arr[i];
+    //int l = 0;
+    //int r = N - 1;
+    //while (l <= r) {
+    //    while (arr[l] < 0)
+    //        l++;
+    //    while (arr[r] >= 0)
+    //        r--;
+    //    if (l <= r) {
+    //        int t = arr[l];
+    //        arr[l] = arr[r];
+    //        arr[r] = t;
+    //        r--;
+    //        l++;
+    //    }
+    //}
+    //for (int i = 0; i < N; i++)
+    //    cout << arr[i] << " ";
 }
+
