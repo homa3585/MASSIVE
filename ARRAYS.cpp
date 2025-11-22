@@ -1,7 +1,7 @@
 #include <iostream>
 
 using namespace std;
-int const N = 13;
+int const N = 5;
 
 bool is_simple(int x) {
     if (x == 2)
@@ -60,10 +60,113 @@ void shake_sort(int* arr) {
     }
 }
 
+void sort_with_max_po_vozr(int* arr) {
+    for (int i = N - 1; i != 0; i--) {
+        int mx_id = 0;
+        for (int j = 1; j <= i; j++) {
+            if (arr[j] > arr[mx_id]) 
+                mx_id = j;
+        }
+        if (mx_id != i) {
+            int t = arr[i];
+            arr[i] = arr[mx_id];
+            arr[mx_id] = t;
+        }
+
+    }
+}
+
+void sort_with_min_po_vozr(int* arr) {
+    for(int i = 0; i < N; i++) {
+        int mn_id = i;
+        for (int j = i; j < N; j++) {
+            if (arr[j] < arr[mn_id])
+                mn_id = j;
+        }
+        if (mn_id != i) {
+            int t = arr[i];
+            arr[i] = arr[mn_id];
+            arr[mn_id] = t;
+        }
+
+    }
+}
+
+void sort_with_min_po_ubiv(int* arr) {
+    for (int i = N - 1; i != 0; i--) {
+        int mn_id = 0;
+        for (int j = 1; j <= i; j++) {
+            if (arr[j] < arr[mn_id])
+                mn_id = j;
+        }
+        if (mn_id != i) {
+            int t = arr[i];
+            arr[i] = arr[mn_id];
+            arr[mn_id] = t;
+        }
+
+    }
+}
+
+void sort_with_max_po_ubiv(int* arr) {
+    for (int i = 0; i < N; i++) {
+        int mx_id = i;
+        for (int j = i; j < N; j++) {
+            if (arr[j] > arr[mx_id])
+                mx_id = j;
+        }
+        if (mx_id != i) {
+            int t = arr[i];
+            arr[i] = arr[mx_id];
+            arr[mx_id] = t;
+        }
+
+    }
+}
+
+void slianie(int* arr1, int* arr2, int* res) {
+    int i, j;
+    i = j = 0;
+    int k = 0;
+    while (i < N && j < N) {
+        if (arr1[i] <= arr2[j]) {
+            res[k] = arr1[i];
+            i++;
+        }
+        else {
+            res[k] = arr2[j];
+            j++;
+        }
+        k++;
+    }
+    while (i < N) {
+        res[k] = arr1[i];
+        i++;
+        k++;
+    }
+    while (j < N) {
+        res[k] = arr2[j];
+        j++;
+        k++;
+    }
+}
+
+void sort_vstavkoi(int* arr) {
+    for (int i = 1; i < N; i++) {
+        for (int j = i; j > 0 && arr[j - 1] > arr[j]; j--) {
+            int t = arr[j];
+            arr[j] = arr[j - 1];
+            arr[j - 1] = t;
+        }
+    }
+}
+
+
 int main() {
     // дз 1a, 4а, 6, 11(a,b), 13(a)(e), 22(a)(b)(ж) 
     // 13 вгдж, (8aбв), 15аб
     // пузырьковая, шейкерная, 22з
+    // сорт поиском минимумом максимумом по возр и по убыв, слиянием, вставкой
 
     //1a
     
@@ -461,14 +564,15 @@ int main() {
     //    cout << arr[i] << " ";
     //}
     //cout << endl;
-    //Buble_sort(arr);
+    //sort_vstavkoi(arr);
     ////массив после сортировки
     //for (int i = 0; i < N; i++) {
     //    cout << arr[i] << " ";
     //}
-    ////аналогично с shake_sort
+    //аналогично с shake_sort
 
     //реализация без функций
+
     // buble_sort
     //int arr[N];
     //for (int i = 0; i < N; i++) {
@@ -522,7 +626,7 @@ int main() {
     //for (int i = 0; i < N; i++) {
     //    cout << arr[i] << " ";
     //}
-    
+
     //22
 
     // с вспомогательным массивом
@@ -532,7 +636,7 @@ int main() {
     //int right = N - 1;
     //for (int i = 0; i < N; i++)
     //    cin >> arr[i];
-    //for (int i = 0; i < N; i++) {
+    //for (int i = 0; i < N && left < right; i++) {
     //    if (arr[i] < 0) {
     //        new_arr[left] = arr[i];
     //        left++;
@@ -546,14 +650,6 @@ int main() {
     //    cout << new_arr[i] << " ";
     // 
     // без вспомогательного массива но в любом порядке
-    //int arr[N];
-    //for (int i = 0; i < N; i++)
-    //    cin >> arr[i];
-    //Buble_sort(arr);
-    //for (int i = 0; i < N; i++)
-    //    cout << arr[i] << " ";
-    //
-    // без доп массива и сохраняя порядок
     //int arr[N];
     //for (int i = 0; i < N; i++)
     //    cin >> arr[i];
@@ -574,5 +670,43 @@ int main() {
     //}
     //for (int i = 0; i < N; i++)
     //    cout << arr[i] << " ";
+    //
+    // без доп массива и сохраняя порядок
+    //int arr[N];
+    //int j;
+    //bool fl = false;
+    //int k;
+    //for (int i = 0; i < N; i++)
+    //    cin >> arr[i];
+    //for (int i = 0; i < N && !fl; i++) {
+    //    fl = true;
+    //    while (arr[i] <= 0)
+    //        i++;
+    //    j = i;
+    //    for (; j < N && arr[j] > 0; j++);
+    //    if (j != N) {
+    //        k = j - 1;
+    //        fl = false;
+    //        while (k >= i) {
+    //            int t = arr[k + 1];
+    //            arr[k + 1] = arr[k];
+    //            arr[k] = t;
+    //            k--;
+    //        }
+    //    }
+    //}
+    //for (int i = 0; i < N; i++)
+    //    cout << arr[i] << " ";
+
+    // Слияние массивов
+
+    //int arr1[5] = { 2, 6, 8, 9, 13 };
+    //int arr2[5] = { 1, 3, 4, 15, 19 };
+    //int res[10];
+    //slianie(arr1, arr2, res);
+    //for (int i = 0; i < N*2; i++)
+    //    cout << res[i] << " ";
+
+
 }
 
