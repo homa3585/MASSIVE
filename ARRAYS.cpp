@@ -707,6 +707,263 @@ int main() {
     //for (int i = 0; i < N*2; i++)
     //    cout << res[i] << " ";
 
+    // все элемнты массива = 1
+
+    //int arr[10] = { 1,1,1,1,1,1,1,1,1,1 };
+    //bool fl = true;
+    //for (int i = 0; i < 10 && fl; i++)
+    //    if (arr[i] != 1)
+    //        fl = false;
+    //if (fl)
+    //    cout << "YES";
+    //else
+    //    cout << "NO";
+    
+    // найдется эл равный данному
+    
+    //int n;
+    //cout << "n = ";
+    //cin >> n;
+    //int arr[11] = { 1,2,3,4,5,6,7,8,9, 10 };
+    //bool fl = false;
+    //for (int i = 0; i < 10 && !fl; i++) {
+    //    if (arr[i] == n)
+    //        fl = true;
+    //}
+    //if (fl)
+    //    cout << "YES";
+    //else
+    //    cout << "NO";
+    
+    // равны ли 2 вектора
+    
+    //int arr1[N], arr2[N];
+    //cout << "first Massive: ";
+    //for (int i = 0; i < N; i++)
+    //    cin >> arr1[i];
+    //cout << "Second Massive: ";
+    //for (int i = 0; i < N; i++)
+    //    cin >> arr2[i];
+    //bool fl = true;
+    //for (int i = 0; i < N  && fl; i++)
+    //    if (arr1[i] != arr2[i])
+    //        fl = false;
+    //if (fl)
+    //    cout << "YES";
+    //else
+    //    cout << "NO";
+    
+    //22в
+    
+    //int arr[N];
+    //for (int i = 0; i < N; i++)
+    //    cin >> arr[i];
+    //bool fl_ubiv = true;
+    //bool fl_vozr = true;
+    //for (int i = 1; i < N && (fl_ubiv || fl_vozr); i++) {
+    //    if (arr[i] >= arr[i - 1])
+    //        fl_ubiv = false;
+    //    if (arr[i] <= arr[i - 1])
+    //        fl_vozr = false;
+    //}
+    //if (fl_ubiv || fl_vozr)
+    //    cout << "YES";
+    //else
+    //    cout << "NO";
+    
+    //22г
+    
+    //int arr[N];
+    //for (int i = 0; i < N; i++)
+    //    cin >> arr[i];
+    //bool fl = false;
+    //for (int i = 0; i < N && !fl; i++)
+    //    for (int j = i; j < N && !fl; j++)
+    //        if (arr[i] == arr[j])
+    //            fl = true;
+    //if (fl)
+    //    cout << "YES";
+    //else
+    //    cout << "NO";
+    
+    // есть ли unique  элементы
+    
+    //int arr[N];
+    //for (int i = 0; i < N; i++)
+    //    cin >> arr[i];
+    //bool fl = false;
+    //for (int i = 0; i < N && !fl; i++) {
+    //    bool fl2 = true;
+    //    for (int j = 0; j < N && fl2; j++) {
+    //        if (i != j)
+    //            if (arr[j] != arr[i])
+    //                fl2 = false;
+    //    }
+    //    if (!fl2)
+    //        fl = true;
+    //}
+    //if (fl)
+    //    cout << "YES";
+    //else
+    //    cout << "NO";
+    
+    //22 д 
+    
+    //int arr[N];
+    //for (int i = 0; i < N; i++)
+    //    cin >> arr[i];
+    //int c = 0;
+    //for (int i = 0; i < N; i++) {
+    //    bool fl2 = true;
+    //    for (int j = 0; j < N && fl2; j++) {
+    //        if (i != j)
+    //            if (arr[j] == arr[i])
+    //                fl2 = false;
+    //    }
+    //    if (fl2)
+    //        c++;
+    //}
+    //cout << c;
+    
+    // пересечение массивов
+    
+    //int arr1[N], arr2[N], ans[N*2];
+    //ifstream inputFile("INPUT.txt");
+    //ofstream outText("OUTPUT.txt");
+    //if (!inputFile) {
+    //    cout << "ERROR" << endl;
+    //    return 1;
+    //}
+    //for (int i = 0; i < N; i++) 
+    //    inputFile >> arr1[i];
+    //for (int i = 0; i < N; i++) 
+    //    inputFile >> arr2[i];
+    //int i, j, k, t;
+    //i = j = k = 0;
+    //while (i < N && j < N) {
+    //    if (arr1[i] < arr2[j]) i++;
+    //    else if (arr1[i] > arr2[j]) j++;
+    //    else {
+    //        t = arr1[i];
+    //        ans[k] = t;
+    //        while (i < N && arr1[i] == t) i++;
+    //        while (j < N && arr2[j] == t) j++;
+    //        k++;
+    //        }
+    //}
+    //for (int i = 0; i < k; i++) {
+    //    cout << ans[i] << " ";
+    //    outText << ans[i] << " "; 
+    //}
+    
+    // разность массивов
+    
+    //int arr1[N], arr2[N], ans[N * 2];
+    //ifstream inputFile("INPUT.txt");
+    //ofstream outText("OUTPUT.txt");
+    //if (!inputFile) {
+    //    cout << "ERROR" << endl;
+    //        return 1;
+    //}
+    //for (int i = 0; i < N; i++)
+    //    inputFile >> arr1[i];
+    //for (int i = 0; i < N; i++)
+    //    inputFile >> arr2[i];
+    //int i, j, k, t;
+    //i = j = k = 0;
+    //while (i < N && j < N) {
+    //    if (arr1[i] < arr2[j]) {
+    //        ans[k++] = arr1[i++];
+    //    }
+    //    else if (arr1[i] > arr2[j]) {
+    //        j++;
+    //    }
+    //    else {
+    //        i++;
+    //        j++;
+    //    }
+    //    while (i > 0 && i < N && arr1[i] == arr1[i - 1]) i++;
+    //    while (j > 0 && j < N && arr2[j] == arr2[j - 1]) j++;
+    //}
+    //while (i < N) {
+    //    ans[k++] = arr1[i++];
+    //    while (i > 0 && i < N && arr1[i] == arr1[i - 1]) i++;
+    //}
+    //for (int i = 0; i < k; i++) {
+    //    cout << ans[i] << " ";
+    //    outText << ans[i] << " ";
+    //}
+    //in.close();
+    //out.close();
+    
+    // сложение многочленов
+    
+    //int arr1[N], arr2[N], ans[N];
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //if (!in) {
+    //    cout << "ERROR, bro";
+    //    return 1;
+    //}
+    //for (int i = 0; i < N; i++)
+    //    in >> arr1[i];
+    //for (int i = 0; i < N; i++)
+    //    in >> arr2[i];
+    //for (int i = 0; i < N; i++) 
+    //    ans[i] = arr1[i] + arr2[i];
+    //
+    //for (int i = 0; i < N; i++) {
+    //    cout << ans[i] << " ";
+    //    out << ans[i] << " ";
+    //}
+    //in.close();
+    //out.close();
+    
+    // умножение многочленов
+    
+    //int arr1[N], arr2[N];
+    //int ans[2 * N - 1] = {0};
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //if (!in) {
+    //    cout << "ERROR";
+    //    return 1;
+    //}
+    //for (int i = 0; i < N; i++)
+    //    in >> arr1[i];
+    //for (int i = 0; i < N; i++)
+    //    in >> arr2[i];
+    //for (int i = 0; i < N; i++) {
+    //    for (int j = 0; j < N; j++) {
+    //        ans[i + j] += arr1[i] * arr2[j];
+    //    }
+    //}
+    //for (int i = 0; i < 2*N-1; i++) {
+    //    cout << ans[i] << " ";
+    //    out << ans[i] << " ";
+    //}
+    //in.close();
+    //out.close();
+    
+    // взятие производной у многочлена
+    
+    //int arr[N], ans[N];
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //for (int i = 0; i < N; i++)
+    //    in >> arr[i];
+    //int k = 0;
+    //for (int i = N - 1; i >= 0; i--) {
+    //    ans[k] = i * arr[k];
+    //    k++;
+    //}
+    //for (int i = 0; i < N; i++) {
+    //    cout << ans[i] << " ";
+    //    out << ans[i] << " ";
+    //}
+    //in.close();
+    //out.close();
 
 }
+
 
