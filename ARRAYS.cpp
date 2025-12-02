@@ -3,6 +3,17 @@
 using namespace std;
 int const N = 5;
 
+
+double horner(int x, int* arr) {
+    double result = arr[0];
+
+    for (int i = 1; i < N; i++) {
+        result = result * x + arr[i];
+    }
+
+    return result;
+}
+
 bool is_simple(int x) {
     if (x == 2)
         return true;
@@ -964,6 +975,22 @@ int main() {
     //in.close();
     //out.close();
 
+    // схема горнера
+
+    //int arr[N], dels[100];
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int x;
+    //for (int i = 0; i < N; i++)
+    //    in >> arr[i];
+    //int k = 0;
+    //in >> x;
+    //int ans = horner(x, arr);
+    //out << ans;
+    //in.close();
+    //out.close();
+
 }
+
 
 
