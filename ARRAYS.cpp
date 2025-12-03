@@ -1,184 +1,34 @@
 #include <iostream>
+#include <fstream>
 
 using namespace std;
-int const N = 5;
+int const N = 4;
 
-
-double horner(int x, int* arr) {
-    double result = arr[0];
-
-    for (int i = 1; i < N; i++) {
-        result = result * x + arr[i];
-    }
-
-    return result;
-}
-
-bool is_simple(int x) {
-    if (x == 2)
-        return true;
-    if (x < 2)
-        return false;
-    if (x % 2 == 0)
-        return false;
-    for (int i = 3; i <= ((x / 2) + 1); i+=2)
-        if (x % i == 0)
-            return false;
-    return true;
-}
-
-//реализация сортировок функцией
-// достаточно просто вызвать их и сам массив будет отсортирован
-void Buble_sort(int* arr) {
-    bool fl = true;
-    for (int i = N; i != 0 && fl; i--) {
-        fl = false;
-        for (int j = 1; j < i ; j++) {
-            if (arr[j] < arr[j - 1]) {
-                int t = arr[j];
-                arr[j] = arr[j - 1];
-                arr[j - 1] = t;
-                fl = true;
-            }
-        }
-    }
-}
-
-void shake_sort(int* arr) {
-    bool fl = true;
-    int left = 0;
-    int right = N - 1;
-    while (left < right && fl) {
-        fl = false;
-        for (int i = left; i < right; i++) {
-            if (arr[i] > arr[i + 1]) {
-                int t = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = t;
-                fl = true;
-            }
-        }
-        right--;
-        for (int i = right; i > left; i--) {
-            if (arr[i] < arr[i - 1]) {
-                int t = arr[i];
-                arr[i] = arr[i - 1];
-                arr[i - 1] = t;
-                fl = true;
-            }
-        }
-        left++; 
-    }
-}
-
-void sort_with_max_po_vozr(int* arr) {
-    for (int i = N - 1; i != 0; i--) {
-        int mx_id = 0;
-        for (int j = 1; j <= i; j++) {
-            if (arr[j] > arr[mx_id]) 
-                mx_id = j;
-        }
-        if (mx_id != i) {
-            int t = arr[i];
-            arr[i] = arr[mx_id];
-            arr[mx_id] = t;
-        }
-
-    }
-}
-
-void sort_with_min_po_vozr(int* arr) {
-    for(int i = 0; i < N; i++) {
-        int mn_id = i;
-        for (int j = i; j < N; j++) {
-            if (arr[j] < arr[mn_id])
-                mn_id = j;
-        }
-        if (mn_id != i) {
-            int t = arr[i];
-            arr[i] = arr[mn_id];
-            arr[mn_id] = t;
-        }
-
-    }
-}
-
-void sort_with_min_po_ubiv(int* arr) {
-    for (int i = N - 1; i != 0; i--) {
-        int mn_id = 0;
-        for (int j = 1; j <= i; j++) {
-            if (arr[j] < arr[mn_id])
-                mn_id = j;
-        }
-        if (mn_id != i) {
-            int t = arr[i];
-            arr[i] = arr[mn_id];
-            arr[mn_id] = t;
-        }
-
-    }
-}
-
-void sort_with_max_po_ubiv(int* arr) {
-    for (int i = 0; i < N; i++) {
-        int mx_id = i;
-        for (int j = i; j < N; j++) {
-            if (arr[j] > arr[mx_id])
-                mx_id = j;
-        }
-        if (mx_id != i) {
-            int t = arr[i];
-            arr[i] = arr[mx_id];
-            arr[mx_id] = t;
-        }
-
-    }
-}
-
-void slianie(int* arr1, int* arr2, int* res) {
-    int i, j;
-    i = j = 0;
-    int k = 0;
-    while (i < N && j < N) {
-        if (arr1[i] <= arr2[j]) {
-            res[k] = arr1[i];
-            i++;
-        }
-        else {
-            res[k] = arr2[j];
-            j++;
-        }
-        k++;
-    }
-    while (i < N) {
-        res[k] = arr1[i];
-        i++;
-        k++;
-    }
-    while (j < N) {
-        res[k] = arr2[j];
-        j++;
-        k++;
-    }
-}
-
-void sort_vstavkoi(int* arr) {
-    for (int i = 1; i < N; i++) {
-        for (int j = i; j > 0 && arr[j - 1] > arr[j]; j--) {
-            int t = arr[j];
-            arr[j] = arr[j - 1];
-            arr[j - 1] = t;
-        }
-    }
-}
-
+double horner(int x, int* arr);
+bool is_simple(int x);
+void Buble_sort(int arr[]);
+void shake_sort(int* arr);
+void sort_with_max_po_vozr(int* arr);
+void sort_with_min_po_vozr(int* arr);
+void sort_with_min_po_ubiv(int* arr);
+void sort_with_max_po_ubiv(int* arr);
+void slianie(int* arr1, int* arr2, int* res);
+void sort_vstavkoi(int* arr);
+void proizv(int arr[], int ans[]);
+void umn_mn(int arr1[], int arr2[], int ans[]);
+void sum_mn(int arr1[], int arr2[], int ans[]);
+void raznost_arr(int arr1[], int arr2[], int ans[],int &k);
+void peresech_arr(int arr1[], int arr2[], int ans[], int& k);
 
 int main() {
     // дз 1a, 4а, 6, 11(a,b), 13(a)(e), 22(a)(b)(ж) 
     // 13 вгдж, (8aбв), 15аб
     // пузырьковая, шейкерная, 22з
-    // сорт поиском минимумом максимумом по возр и по убыв, слиянием, вставкой
-
+    // сорт поиском минимумом максимумом по возр и по убыв, слиянием, вставкой, обменом 
+    //решето эратосфена
+    // пересечение массивов и разность, сложение мнгочленов взятие произв взятие первообразной
+    // схема горнера через fstream, уножение число многочленов
+    // 
     //1a
     
     //int arr_a[N], arr_b[N];
@@ -575,12 +425,11 @@ int main() {
     //    cout << arr[i] << " ";
     //}
     //cout << endl;
-    //sort_vstavkoi(arr);
+    //Buble_sort(arr);
     ////массив после сортировки
     //for (int i = 0; i < N; i++) {
     //    cout << arr[i] << " ";
     //}
-    //аналогично с shake_sort
 
     //реализация без функций
 
@@ -719,7 +568,7 @@ int main() {
     //    cout << res[i] << " ";
 
     // все элемнты массива = 1
-
+    
     //int arr[10] = { 1,1,1,1,1,1,1,1,1,1 };
     //bool fl = true;
     //for (int i = 0; i < 10 && fl; i++)
@@ -729,9 +578,9 @@ int main() {
     //    cout << "YES";
     //else
     //    cout << "NO";
-    
+
     // найдется эл равный данному
-    
+
     //int n;
     //cout << "n = ";
     //cin >> n;
@@ -745,9 +594,9 @@ int main() {
     //    cout << "YES";
     //else
     //    cout << "NO";
-    
+
     // равны ли 2 вектора
-    
+
     //int arr1[N], arr2[N];
     //cout << "first Massive: ";
     //for (int i = 0; i < N; i++)
@@ -763,9 +612,9 @@ int main() {
     //    cout << "YES";
     //else
     //    cout << "NO";
-    
+
     //22в
-    
+
     //int arr[N];
     //for (int i = 0; i < N; i++)
     //    cin >> arr[i];
@@ -781,7 +630,7 @@ int main() {
     //    cout << "YES";
     //else
     //    cout << "NO";
-    
+
     //22г
     
     //int arr[N];
@@ -796,9 +645,9 @@ int main() {
     //    cout << "YES";
     //else
     //    cout << "NO";
-    
+
     // есть ли unique  элементы
-    
+
     //int arr[N];
     //for (int i = 0; i < N; i++)
     //    cin >> arr[i];
@@ -817,7 +666,7 @@ int main() {
     //    cout << "YES";
     //else
     //    cout << "NO";
-    
+
     //22 д 
     
     //int arr[N];
@@ -835,7 +684,7 @@ int main() {
     //        c++;
     //}
     //cout << c;
-    
+
     // пересечение массивов
     
     //int arr1[N], arr2[N], ans[N*2];
@@ -849,66 +698,37 @@ int main() {
     //    inputFile >> arr1[i];
     //for (int i = 0; i < N; i++) 
     //    inputFile >> arr2[i];
-    //int i, j, k, t;
-    //i = j = k = 0;
-    //while (i < N && j < N) {
-    //    if (arr1[i] < arr2[j]) i++;
-    //    else if (arr1[i] > arr2[j]) j++;
-    //    else {
-    //        t = arr1[i];
-    //        ans[k] = t;
-    //        while (i < N && arr1[i] == t) i++;
-    //        while (j < N && arr2[j] == t) j++;
-    //        k++;
-    //        }
-    //}
+    //int k = 0;
+    //peresech_arr(arr1, arr2, ans, k);
     //for (int i = 0; i < k; i++) {
     //    cout << ans[i] << " ";
     //    outText << ans[i] << " "; 
     //}
-    
+
     // разность массивов
-    
+
     //int arr1[N], arr2[N], ans[N * 2];
-    //ifstream inputFile("INPUT.txt");
-    //ofstream outText("OUTPUT.txt");
-    //if (!inputFile) {
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //if (!in) {
     //    cout << "ERROR" << endl;
     //        return 1;
     //}
     //for (int i = 0; i < N; i++)
-    //    inputFile >> arr1[i];
+    //    in >> arr1[i];
     //for (int i = 0; i < N; i++)
-    //    inputFile >> arr2[i];
-    //int i, j, k, t;
-    //i = j = k = 0;
-    //while (i < N && j < N) {
-    //    if (arr1[i] < arr2[j]) {
-    //        ans[k++] = arr1[i++];
-    //    }
-    //    else if (arr1[i] > arr2[j]) {
-    //        j++;
-    //    }
-    //    else {
-    //        i++;
-    //        j++;
-    //    }
-    //    while (i > 0 && i < N && arr1[i] == arr1[i - 1]) i++;
-    //    while (j > 0 && j < N && arr2[j] == arr2[j - 1]) j++;
-    //}
-    //while (i < N) {
-    //    ans[k++] = arr1[i++];
-    //    while (i > 0 && i < N && arr1[i] == arr1[i - 1]) i++;
-    //}
+    //    in >> arr2[i];
+    //int k = 0;
+    //raznost_arr(arr1, arr2, ans, k);
     //for (int i = 0; i < k; i++) {
     //    cout << ans[i] << " ";
-    //    outText << ans[i] << " ";
+    //    out << ans[i] << " ";
     //}
     //in.close();
     //out.close();
     
     // сложение многочленов
-    
+
     //int arr1[N], arr2[N], ans[N];
     //ifstream in("INPUT.txt");
     //ofstream out("OUTPUT.txt");
@@ -920,18 +740,16 @@ int main() {
     //    in >> arr1[i];
     //for (int i = 0; i < N; i++)
     //    in >> arr2[i];
-    //for (int i = 0; i < N; i++) 
-    //    ans[i] = arr1[i] + arr2[i];
-    //
+    //sum_mn(arr1, arr2, ans);
     //for (int i = 0; i < N; i++) {
     //    cout << ans[i] << " ";
     //    out << ans[i] << " ";
     //}
     //in.close();
     //out.close();
-    
+
     // умножение многочленов
-    
+
     //int arr1[N], arr2[N];
     //int ans[2 * N - 1] = {0};
     //ifstream in("INPUT.txt");
@@ -944,11 +762,7 @@ int main() {
     //    in >> arr1[i];
     //for (int i = 0; i < N; i++)
     //    in >> arr2[i];
-    //for (int i = 0; i < N; i++) {
-    //    for (int j = 0; j < N; j++) {
-    //        ans[i + j] += arr1[i] * arr2[j];
-    //    }
-    //}
+    //umn_mn(arr1, arr2, ans);
     //for (int i = 0; i < 2*N-1; i++) {
     //    cout << ans[i] << " ";
     //    out << ans[i] << " ";
@@ -957,17 +771,13 @@ int main() {
     //out.close();
     
     // взятие производной у многочлена
-    
+
     //int arr[N], ans[N];
     //ifstream in("INPUT.txt");
     //ofstream out("OUTPUT.txt");
     //for (int i = 0; i < N; i++)
     //    in >> arr[i];
-    //int k = 0;
-    //for (int i = N - 1; i >= 0; i--) {
-    //    ans[k] = i * arr[k];
-    //    k++;
-    //}
+    //proizv(arr, ans);
     //for (int i = 0; i < N; i++) {
     //    cout << ans[i] << " ";
     //    out << ans[i] << " ";
@@ -987,10 +797,237 @@ int main() {
     //in >> x;
     //int ans = horner(x, arr);
     //out << ans;
-    //in.close();
-    //out.close();
+
+    //return 0;
+}
+
+double horner(int x, int* arr) {
+    double result = arr[0];
+
+    for (int i = 1; i < N; i++) {
+        result = result * x + arr[i];
+    }
+
+    return result;
+}
+
+bool is_simple(int x) {
+    if (x == 2)
+        return true;
+    if (x < 2)
+        return false;
+    if (x % 2 == 0)
+        return false;
+    for (int i = 3; i <= ((x / 2) + 1); i += 2)
+        if (x % i == 0)
+            return false;
+    return true;
+}
+
+void Buble_sort(int arr[]) {
+    bool fl = true;
+    for (int i = N; i != 0 && fl; i--) {
+        fl = false;
+        for (int j = 1; j < i; j++) {
+            if (arr[j] < arr[j - 1]) {
+                int t = arr[j];
+                arr[j] = arr[j - 1];
+                arr[j - 1] = t;
+                fl = true;
+            }
+        }
+    }
+} // обменом 
+
+void shake_sort(int* arr) {
+    bool fl = true;
+    int left = 0;
+    int right = N - 1;
+    while (left < right && fl) {
+        fl = false;
+        for (int i = left; i < right; i++) {
+            if (arr[i] > arr[i + 1]) {
+                int t = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = t;
+                fl = true;
+            }
+        }
+        right--;
+        for (int i = right; i > left; i--) {
+            if (arr[i] < arr[i - 1]) {
+                int t = arr[i];
+                arr[i] = arr[i - 1];
+                arr[i - 1] = t;
+                fl = true;
+            }
+        }
+        left++;
+    }
+}
+
+void sort_with_max_po_vozr(int* arr) {
+    for (int i = N - 1; i != 0; i--) {
+        int mx_id = 0;
+        for (int j = 1; j <= i; j++) {
+            if (arr[j] > arr[mx_id])
+                mx_id = j;
+        }
+        if (mx_id != i) {
+            int t = arr[i];
+            arr[i] = arr[mx_id];
+            arr[mx_id] = t;
+        }
+
+    }
+}
+
+void sort_with_min_po_vozr(int* arr) {
+    for (int i = 0; i < N; i++) {
+        int mn_id = i;
+        for (int j = i; j < N; j++) {
+            if (arr[j] < arr[mn_id])
+                mn_id = j;
+        }
+        if (mn_id != i) {
+            int t = arr[i];
+            arr[i] = arr[mn_id];
+            arr[mn_id] = t;
+        }
+
+    }
+}
+
+void sort_with_min_po_ubiv(int* arr) {
+    for (int i = N - 1; i != 0; i--) {
+        int mn_id = 0;
+        for (int j = 1; j <= i; j++) {
+            if (arr[j] < arr[mn_id])
+                mn_id = j;
+        }
+        if (mn_id != i) {
+            int t = arr[i];
+            arr[i] = arr[mn_id];
+            arr[mn_id] = t;
+        }
+
+    }
+}
+
+void sort_with_max_po_ubiv(int* arr) {
+    for (int i = 0; i < N; i++) {
+        int mx_id = i;
+        for (int j = i; j < N; j++) {
+            if (arr[j] > arr[mx_id])
+                mx_id = j;
+        }
+        if (mx_id != i) {
+            int t = arr[i];
+            arr[i] = arr[mx_id];
+            arr[mx_id] = t;
+        }
+
+    }
+}
+
+void slianie(int* arr1, int* arr2, int* res) {
+    int i, j;
+    i = j = 0;
+    int k = 0;
+    while (i < N && j < N) {
+        if (arr1[i] <= arr2[j]) {
+            res[k] = arr1[i];
+            i++;
+        }
+        else {
+            res[k] = arr2[j];
+            j++;
+        }
+        k++;
+    }
+    while (i < N) {
+        res[k] = arr1[i];
+        i++;
+        k++;
+    }
+    while (j < N) {
+        res[k] = arr2[j];
+        j++;
+        k++;
+    }
+}
+
+void sort_vstavkoi(int* arr) {
+    for (int i = 1; i < N; i++) {
+        for (int j = i; j > 0 && arr[j - 1] > arr[j]; j--) {
+            int t = arr[j];
+            arr[j] = arr[j - 1];
+            arr[j - 1] = t;
+        }
+    }
+}
+
+void proizv(int arr[], int ans[]) {
+    int k = 0;
+    for (int i = N - 1; i >= 0; i--) {
+        ans[k] = i * arr[k];
+        k++;
+    }
+}
+
+void umn_mn(int arr1[], int arr2[], int ans[]) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            ans[i + j] += arr1[i] * arr2[j];
+        }
+    }
+}
+
+void sum_mn(int arr1[], int arr2[], int ans[]) {
+    for (int i = 0; i < N; i++)
+        ans[i] = arr1[i] + arr2[i];
 
 }
+
+void raznost_arr(int arr1[], int arr2[], int ans[], int &k) {
+    int i, j, t;
+    i = j = 0;
+    while (i < N && j < N) {
+        if (arr1[i] < arr2[j]) {
+            ans[k++] = arr1[i++];
+        }
+        else if (arr1[i] > arr2[j]) {
+            j++;
+        }
+        else {
+            i++;
+            j++;
+        }
+        while (i > 0 && i < N && arr1[i] == arr1[i - 1]) i++;
+        while (j > 0 && j < N && arr2[j] == arr2[j - 1]) j++;
+    }
+    while (i < N) {
+        ans[k++] = arr1[i++];
+        while (i > 0 && i < N && arr1[i] == arr1[i - 1]) i++;
+    }
+}
+
+void peresech_arr(int arr1[], int arr2[], int ans[], int& k) {
+    int i, j, t;
+    i = j = 0;
+    while (i < N && j < N) {
+        if (arr1[i] < arr2[j]) i++;
+        else if (arr1[i] > arr2[j]) j++;
+        else {
+            t = arr1[i];
+            ans[k] = t;
+            while (i < N && arr1[i] == t) i++;
+            while (j < N && arr2[j] == t) j++;
+            k++;
+        }
+    }
+}
+
 
 
 
