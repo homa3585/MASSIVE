@@ -2,7 +2,7 @@
 #include <fstream>
 
 using namespace std;
-int const N = 4;
+int const N = 3;
 
 double horner(int x, int* arr);
 bool is_simple(int x);
@@ -19,6 +19,9 @@ void umn_mn(int arr1[], int arr2[], int ans[]);
 void sum_mn(int arr1[], int arr2[], int ans[]);
 void raznost_arr(int arr1[], int arr2[], int ans[],int &k);
 void peresech_arr(int arr1[], int arr2[], int ans[], int& k);
+void triangle_matrix(int arr[][N]);
+void make_null_matrix(int arr[][N]);
+void out_matrix(int arr[][N], ofstream& out);
 
 int main() {
     // дз 1a, 4а, 6, 11(a,b), 13(a)(e), 22(a)(b)(ж) 
@@ -797,8 +800,127 @@ int main() {
     //in >> x;
     //int ans = horner(x, arr);
     //out << ans;
-
     //return 0;
+
+    //40а
+    
+    //int arr[N][N];
+    //ofstream out("OUTPUT.txt");
+    //for (int i = 0; i < N; i++) {
+    //    for (int j = 0; j < N; j++) {
+    //        arr[i][j] = 0;
+    //    }
+    //    arr[i][i]++;
+    //}
+    //out_matrix(arr, out);
+
+    //out.close();
+
+    //40б
+
+    //int arr[N][N];
+    //ofstream out("OUTPUT.txt"); 
+    //triangle_matrix(arr);
+    //out_matrix(arr, out);
+    //out.close();
+
+    //40в
+
+    //int arr[N][N];
+    //ofstream out("OUTPUT.txt");
+    //make_null_matrix(arr);
+    //for (int i = 0; i < N; i++) {
+    //    int c = 1;
+    //    for (int j = i; j < N; j++) {
+    //        arr[i][j] = c;
+    //        c++;
+    //    }
+    //}
+    //out_matrix(arr, out);
+    //out.close();
+
+    //40г
+
+    //int arr[N][N];
+    //ofstream out("OUTPUT.txt");
+    //int c = 2;
+    //for (int i = 0; i < N; i++) {
+    //    int k = c;
+    //    for (int j = 0; j < N; j++) {
+    //        arr[i][j] = k++;
+    //    }
+    //    c++;
+    //}
+    //out_matrix(arr, out);
+    //out.close();
+
+    //45
+
+    //int arr[N][N];
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //for (int i = 0; i < N; i++) {
+    //    for (int j = 0; j < N; j++) {
+    //        in >> arr[j][i];
+    //    }
+    //}
+    //out_matrix(arr, out);
+    //in.close();
+    //out.close();
+
+    //39
+    //int arr[N][N];
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //for (int i = 0; i < N; i++) {
+    //    for (int j = 0; j < N; j++) {
+    //        in >> arr[i][j];
+    //    }
+    //}
+    //int sm = 0;
+    //for (int i = 0; i < N; i++) {
+    //    for (int j = 0; j < N; j++) {
+    //        sm += arr[i][j] * arr[i][j];
+    //    }
+    //}
+    //double ans = sqrt(sm);
+    //cout << ans;
+    //out << ans;
+    //in.close();
+    //out.close();
+
+
+
+}
+
+void make_null_matrix(int arr[][N]) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            arr[i][j] = 0;
+        }
+    }
+}
+
+void out_matrix(int arr[][N], ofstream& out) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            cout << arr[i][j] << " ";
+            out << arr[i][j] << " ";
+        }
+        cout << endl;
+        out << endl;
+    }
+}
+
+void triangle_matrix(int arr[][N]) {
+    make_null_matrix(arr);
+    for (int i = 0; i < N; i++) {
+        int c = 1;
+        for (int j = 0; j <= i; j++) {
+            arr[i][j] = c;
+            c++;
+        }
+    }
 }
 
 double horner(int x, int* arr) {
@@ -1027,7 +1149,5 @@ void peresech_arr(int arr1[], int arr2[], int ans[], int& k) {
         }
     }
 }
-
-
 
 
