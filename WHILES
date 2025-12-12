@@ -1,0 +1,419 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+const double MY_PI = 3.14159265358979323846;
+
+
+
+int main() {
+	////10 
+	//double x, n, t;
+	//cout << "n = ";
+	//cin >> n;
+	//cout << "x = ";
+
+	//cin >> x;
+	//// a
+	//t = x;
+	//double s1 = t;
+	//for (int k = 1; k <= n; k++) {
+	//	t *= -x * x * (2 * k + 1) / ((k + 1) * (2 * k + 3));
+	//	s1 += t;
+	//}
+	//cout << "S1 = " << s1 << endl;
+
+	//// б
+	//t = x;
+	//double s2 = t;
+	//for (int k = 1; k <= n; k++) {
+	//	t *= (-x * x * x * x) * (4 * k + 1) / ((2 * k + 2) * (2 * k + 1) * (4 * k + 5));
+	//	s2 += t;
+	//}
+	//cout << "S2 = " << s2 << endl;
+
+	//// в
+	//t = x*x/2;
+	//double s3 = t;
+	//for (int k = 2; k <= n; k++) {
+	//	t *= x * x * (2 * k + 1) / (2 * k + 2);
+	//	s3 += t;
+	//}
+	//cout << "S3 = " << s3 << endl;
+
+	//// г
+	//t = x;
+	//double s4 = t;
+	//for (int k = 2; k <= n*2; k++) {
+	//	t *= (-x * x * x * x) * (4 * k + 1) / ((2 * k + 2) * (2 * k + 1) * (4 * k + 5));
+	//	s4 += t;
+	//}
+	//cout << "S4 = " << s4 << endl;
+
+
+	////11 
+	//int n;
+	//cout << "n = ";
+	//cin >> n;
+
+	//// б
+	//double t = 0.0;
+	//double x = 1.0;
+	//double y = 1.0;
+	//for (int i = 1; i <= n; ++i) {
+	//		x *= cos(i);
+	//		y *= sin(i);
+	//	t += x / y;
+	//}
+	//cout << 't = ' <<  t << endl;
+
+	//// г
+	//double v = 0.0;
+	//x = 1.0;
+	//y = 1.0;
+	//for (int i = 1; i <= n; ++i) {
+	//	x *= cos(i);
+	//	y *= sin(i);
+	//	v *= x / y;
+	//}
+	//cout << 'v = ' << v << endl;
+
+	//12
+	//double eps, x;
+	//cout << "eps = ";
+	//cin >> eps;
+	//cout << "x = ";
+	//cin >> x;
+
+	// //a
+	//double t = x;
+	//double sm = t;
+	//int n = 2;
+	//while (abs(t) > eps) {
+	//	t *= x / n;
+	//	n++;
+	//	sm += t;
+	//}
+	//cout << "e**x = " << sm + 1 << endl;
+
+	// b
+	//double t = x;
+	//double sm = x;
+	//int n = 0;
+	//while (abs(t) >= eps) {
+	//	t = -t * x * x / ((2 * n + 2) * (2 * n + 3));
+	//	n++;
+	//	sm += t;
+	//}
+	//cout << "sin(x) = " << sm << endl;
+
+
+	// в
+	//double t = x;
+	//double sm = t;
+	//int n = 1;
+	//while (abs(t) >= eps) {
+	//	t = -t * x * n / (n + 1);
+	//	n++;
+	//	sm += t;
+	//}
+	//cout << "ln(1+x) = " << sm << endl;
+
+	// г
+	//double t = 1;
+	//double sm = t;
+	//int n = 1;
+	//while (abs(t) >= eps) {
+	//	t = -t * x * x / ((2 * n + 2) * (2 * n + 1));
+	//	n++;
+	//	sm += t;
+	//}
+	//cout << "cos(x) = " << sm << endl;
+
+	//14 a
+	//double eps, x;
+	//cout << "eps = ";
+	//cin >> eps;
+	//cout << "x = ";
+	//cin >> x;
+	//int p = -1;
+	//double tk, t, s, k;
+	//s = 0;
+	//k = 1;
+	//tk = 1;
+	//while (tk >= eps) {
+	//	t = p * sin(tk * x) * sin(tk * x) * tk;
+	//	s += t;
+	//	k++;
+	//	p *= -1;
+	//	tk *= 1 / k;
+	//}
+	//cout << "s = " << s;
+
+	//14 b
+	//double eps, x, a;
+	//cout << "eps = ";
+	//cin >> eps;
+	//cout << "x = ";
+	//cin >> x;
+	//cout << "a = ";
+	//cin >> a;
+	//double tk, t, s, k;
+	//s = 0;
+	//k = 1;
+	//tk = 1/ a;
+	//while (tk >= eps) {
+	//	t = log(tk * x) * tk;
+	//	s += t;
+	//	k++;
+	//	tk *= 1 / a;
+	//}
+	//cout << "s = " << s;
+	
+	//25 
+	//double eps, x;
+	//cout << "eps = ";
+	//cin >> eps;
+	//cout << "x = ";
+	//cin >> x;
+	//double ys;
+	//if (x >= 1) 
+	//	ys = x / 3;
+	//else 
+	//	ys = x;
+	//double yn = ys - (1 / 3.0) * (ys - x / (ys * ys));
+	//while (abs(yn - ys) > eps) {
+	//	ys = yn;
+	//	yn = ys - (1 / 3.0) * (ys - x / (ys * ys));
+	//}
+	//cout << "cubic root x = " << yn << endl;
+
+	//30 
+	//double a, b, eps, xn, xs, z;
+	//eps = 0.0001;
+	//a = 1.0;
+	//b = 1.1;
+	//if ((a * a * a * a * a - a - 0.002) * (20 * a * a * a) > 0)
+	//	z = a;
+	//else 
+	//	z = b;
+	//xs = z;
+	//xn = xs - ((xs * xs * xs * xs * xs - xs - 0.0002) / (5 * xs * xs * xs * xs - 1));
+	//while (abs(xn - xs) > eps) {
+	//	xs = xn;
+	//	xn = xs - ((xs * xs * xs * xs * xs - xs - 0.0002) / (5 * xs * xs * xs * xs - 1));
+	//}
+	//cout << "a)x = " << xn << endl;
+
+	//a = MY_PI;
+	//b = MY_PI * 2;
+	//if (((2 * sin(a / 2) - a) * (-sin(a / 2) / 2)) > 0)
+	//	z = a;
+	//else z = b;
+	//xs = z;
+	//xn = xs - ((2 * sin(xs / 2) - xs) / (cos(xs / 2) - 1));
+	//while (abs(xn - xs) > eps) {
+	//	xs = xn;
+	//	xn = xs - ((2 * sin(xs / 2) - xs) / (cos(xs / 2) - 1));
+	//}
+	//cout << "b)x = " << xn << endl;
+
+	//22a
+	//int n;
+	//double x, a;
+	//cout << "n = ";
+	//cin >> n;
+	//cout << "x = ";
+	//cin >> x;
+	//cout << "a = ";
+	//cin >> a;
+
+	//double yn, ys, bk, bs;
+	//ys = 1;
+	//bs = 1 / (a * x);
+	//bk = bs * x * x;
+	//yn = bk * ys;
+	//for (int i = 1; i < n; i++) {
+	//	ys = yn;
+	//	bs = bk;
+	//	bk = bs * x * x;
+	//	yn = bk * ys;
+	//}
+	//cout << "yn = " << yn << endl;
+
+	//23
+	//double a, b, x;
+	//cout << "a = ";
+	//cin >> a;
+	//cout << "b = ";
+	//cin >> b;
+	//cout << "x = ";
+	//cin >> x;
+	//double vss, vs, vn, s;
+	//vss = vs = a;
+	//
+	//vn = vss + vs;
+    //s = 0;
+	//s += log(vss * x) + log(vs * x);
+	//while (vn >= a && vn <= b) {
+	//	s += log(vn * x);
+	//	vss = vs;
+	//	vs = vn;
+	//	vn = vss + vs;
+	//}
+	//cout <<"s = " << s << endl;
+
+	//27
+	//double as, bs, an, bn, x, eps;
+	//cout << "x = ";
+	//cin >> x;
+	//cout << "eps = ";
+	//cin >> eps;
+	//as = 1;
+	//bs = 1 - x;
+	//an = as * (1 + bs);
+	//bn = bs * bs;
+	//while (bn > eps) {
+	//	as = an;
+	//	bs = bn;
+	//	an = as * (1 + bs);
+	//	bn = bs * bs;
+	//}
+	//cout << "1/x = " << an << endl;
+
+	//28
+		//double an, as, bn, bs, x, eps;
+		//cout << "x = ";
+		//cin >> x;
+		//cout << "eps = ";
+		//cin >> eps;
+		//as = x;
+		//bs = 1 - x;
+		//an = as * (1 + bs / 2);
+		//bn = bs * bs * (3 + bs);
+		//while (bn > eps) {
+		//	bs = bn;
+		//	as = an;
+		//	an = as * (1 + bs / 2);
+		//	bn = bs * bs * (3 + bs);
+		//}
+		//cout << "sqrt(x) = " << an;
+
+    // 31 a
+	//double eps, a, b, c;
+	//eps = 0.0001;
+	//a = MY_PI / 4;
+	//b = 5 * MY_PI / 4;
+	//if ((cos(a) + sin(a)) == 0) {
+	//	cout << "x = " << a;
+	//	return 0;
+	//}
+	//if ((cos(b) + sin(b)) == 0) {
+	//	cout << "x = " << b;
+	//	return 0;
+	//}
+	//c = (a + b) / 2;
+	//while (b - a > 2 * eps && (cos(c) + sin(c)) != 0) {
+	//	if ((cos(a) + sin(a)) * (cos(c) + sin(c)) < 0)
+	//		b = c;
+	//	if ((cos(b) + sin(b)) * (cos(c) + sin(c)) < 0)
+	//		a = c;
+	//	c = (a + b) / 2;
+	//}
+	//cout << "x = " << c << endl;
+
+	// 31 b
+	//double eps, a, b, c;
+	//eps = 0.0001;
+	//a = 0;
+	//b = 1;
+	//if ((exp(2 * a) - exp(a) - log(fabs(a) + 1) * cos(a)) == 0) {
+	//	cout << "x = " << a;
+	//	return 0;
+	//}
+	//if ((exp(2 * b) - exp(b) - log(fabs(b) + 1) * cos(b)) == 0) {
+	//	cout << "x = " << b;
+	//	return 0;
+	//}
+	//c = (a + b) / 2;
+	//while (b - a > 2 * eps && (exp(2 * c) - exp(c) - log(fabs(c) + 1) * cos(c)) != 0) {
+	//	if ((exp(2 * a) - exp(a) - log(fabs(a) + 1) * cos(a)) * (exp(2 * c) - exp(c) - log(fabs(c) + 1) * cos(c)) < 0)
+	//		b = c;
+	//	if ((exp(2 * b) - exp(b) - log(fabs(b) + 1) * cos(b)) * (exp(2 * c) - exp(c) - log(fabs(c) + 1) * cos(c)) < 0)
+	//		a = c;
+	//	c = (a + b) / 2;
+	//}
+	//cout << "x = " << c << endl;
+
+	// 31 B
+	//double eps, a, b, c;
+	//eps = 0.0001;
+	//int arr[3][2] = {
+	//	{-3, -2},
+	//	{-1, 0},
+	//	{0, 1}
+	//};
+	//for (int i = 0; i < 3; i++) {
+	//	a = arr[i][0];
+	//	b = arr[i][1];
+	//	if ((a * a * a + 3 * a * a - 1) == 0) {
+	//		cout << "x = " << a;
+	//		return 0;
+	//	}
+	//	if ((b * b * b + 3 * b * b - 1) == 0) {
+	//		cout << "x = " << b;
+	//		return 0;
+	//	}
+	//	c = (a + b) / 2;
+	//	while (b - a > 2 * eps && (c * c * c + 3 * c * c - 1) != 0) {
+	//		if ((a * a * a + 3 * a * a - 1) * (c * c * c + 3 * c * c - 1) < 0)
+	//			b = c;
+	//		if ((b * b * b + 3 * b * b - 1) * (c * c * c + 3 * c * c - 1) < 0)
+	//			a = c;
+	//		c = (a + b) / 2;
+	//	}
+	//	cout << "x" << i+1 <<  " = " << c << endl;
+	//}
+
+	//32 a
+	//double eps, a, xs, xn;
+	//eps = 0.0001;
+	//a = 0;
+	//xs = a;
+	//xn = -log(xs + 3);
+	//while (fabs(xn - xs) > eps) {
+	//	xs = xn;
+	//	xn = -log(xs + 3);
+	//}
+	//cout << "x = " << xn << endl;
+
+	//32 b
+	//double eps, a, xs, xn;
+	//eps = 0.0001;
+	//cout << "a = ";
+	//cin >> a;
+	//xs = a;
+	//xn = 1 + 9 * (sin(xs) / 2);
+	//while (fabs(xn - xs) > eps) {
+	//	xs = xn;
+	//	xn = 1 + 9 * (sin(xs) / 2);
+	//}
+	//cout << "x = " << xn << endl;
+
+    //32 В
+	//double eps, a, xs, xn;
+	//eps = 0.0001;
+	//double arr[3] = { -1.0, 0.0, 1.0 };
+	//for (int i = 0; i < 3; i++) {
+	//	a = arr[i];
+	//	xs = a;
+	//	xn = xs * xs * xs * xs * xs - 0.2;
+	//	while (fabs(xn - xs) > eps) {
+	//		xs = xn;
+	//		xn = xs * xs * xs * xs * xs - 0.2;
+	//	}
+	//	cout << "x" << i + 1 << " = " << xn << endl;
+	//}
+	//return 0;
+
+}
