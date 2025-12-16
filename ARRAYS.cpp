@@ -22,6 +22,11 @@ void peresech_arr(int arr1[], int arr2[], int ans[], int& k);
 void triangle_matrix(int arr[][N]);
 void make_null_matrix(int arr[][N]);
 void out_matrix(int arr[][N], ofstream& out);
+int** create_matrix(ifstream& in, int n, int m);
+void show_matrix(int** arr, int n, int m, ofstream& out);
+int find_max(int** arr, int n, int m);
+void swap_min_max(int** arr, int n, int m);
+void swap_min_max_col(int** arr, int n, int m);
 
 int main() {
     // дз 1a, 4а, 6, 11(a,b), 13(a)(e), 22(a)(b)(ж) 
@@ -889,8 +894,144 @@ int main() {
     //in.close();
     //out.close();
 
+    // нахождение макс элемента
+    
+    //int m, n;
+    //cout << "Matrix m*n" << endl;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //int** arr = create_matrix(in, n, m);
+    //show_matrix(arr, n, m); 
+    //int ans = find_max(arr, n, m);
+    //cout << endl << ans << endl;
+    //for (int i = 0; i < n; i++) {
+    //    delete[] arr[i];
+    //}
+    //delete[] arr;
+
+    // Найти максимальный и минимальный элемент в матрице и переставить их местами. 
+    //int m, n;
+    //cout << "Matrix m*n" << endl;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int** arr = create_matrix(in, n, m);
+    //swap_min_max(arr, n, m);
+    //show_matrix(arr, n, m, out);
+
+    //for (int i = 0; i < n; i++) {
+    //    delete[] arr[i];
+    //}
+    //delete[] arr;
+
+    // Найти максимальный и минимальный элемент в матрице и переставить местами столбцы, в которых они расположены. 
+
+    //int n, m;
+    //cout << "Matrix n*m" << endl;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int** arr = create_matrix(in, n, m);
+    //swap_min_max_col(arr, n, m);
+    //show_matrix(arr, n, m, out);
+    //for (int i = 0; i < n; i++) 
+    //    delete[] arr[i];
+    //delete[] arr;
+}
+
+void swap_min_max_col(int** arr, int n, int m) {
+    int mx = arr[0][0];
+    int mx_col = 0;
+    int mn = arr[0][0];
+    int mn_col = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (arr[i][j] > mx) {
+                mx = arr[i][j];
+                mx_col = j;
+            }
+            if (arr[i][j] < mn) {
+                mn = arr[i][j];
+                mn_col = j;
+            }
+
+        }
+    }
+    if (mx_col != mn_col) {
+        for (int i = 0; i < n; i++) {
+            int t = arr[i][mx_col];
+            arr[i][mx_col] = arr[i][mn_col];
+            arr[i][mn_col] = t;
+        }
+    }
+}
 
 
+void swap_min_max(int** arr, int n, int m) {
+    int mx = arr[0][0];
+    int mx_id[2] = {0, 0};
+    int mn = arr[0][0];
+    int mn_id[2] = { 0, 0 };
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (arr[i][j] > mx) {
+                mx = arr[i][j];
+                mx_id[0] = i;
+                mx_id[1] = j;
+            }
+            if (arr[i][j] < mn) {
+                mn = arr[i][j];
+                mn_id[0] = i;
+                mn_id[1] = j;
+            }
+                
+        }
+    }
+    int t = arr[mx_id[0]][mx_id[1]];
+    arr[mx_id[0]][mx_id[1]] = arr[mn_id[0]][mn_id[1]];
+    arr[mn_id[0]][mn_id[1]] = t;
+}
+
+int find_max(int** arr, int n, int m) {
+    int mx = arr[0][0];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (arr[i][j] > mx)
+                mx = arr[i][j];
+        }
+    }
+    return mx;
+}
+
+int** create_matrix(ifstream& in, int n, int m) {
+    int** arr = new int* [n];
+    for (int i = 0; i < n; i++) {
+        arr[i] = new int[m];
+    }
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            in >> arr[i][j];
+    return arr;
+}
+
+void show_matrix(int** arr, int n, int m, ofstream& out) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cout << arr[i][j] << " ";
+            out << arr[i][j] << " ";
+        }
+        cout << endl;
+        out << endl;
+    }
 }
 
 void make_null_matrix(int arr[][N]) {
@@ -1149,5 +1290,3 @@ void peresech_arr(int arr1[], int arr2[], int ans[], int& k) {
         }
     }
 }
-
-
