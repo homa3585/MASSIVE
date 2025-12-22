@@ -1234,7 +1234,7 @@ int main() {
 
     
 }
-
+//пизда нам на кр следующей
 int** T_matrix(int** arr, int n, int m) {
     int** narr = new int* [m];
     for (int i = 0; i< m; i++)
@@ -1642,3 +1642,4 @@ void peresech_arr(int arr1[], int arr2[], int ans[], int& k) {
         }
     }
 }
+
