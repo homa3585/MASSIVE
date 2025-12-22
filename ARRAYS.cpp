@@ -25,8 +25,14 @@ void out_matrix(int arr[][N], ofstream& out);
 int** create_matrix(ifstream& in, int n, int m);
 void show_matrix(int** arr, int n, int m, ofstream& out);
 int find_max(int** arr, int n, int m);
+void find_min(int** arr, int n, int m);
 void swap_min_max(int** arr, int n, int m);
 void swap_min_max_col(int** arr, int n, int m);
+int* arr_min_el(int** arr, int n, int m);
+int* arr_max_el(int** arr, int n, int m);
+int* matrix_to_vector(int** arr, int* vector, int n, int m);
+int** T_matrix(int** arr, int n, int m);
+
 
 int main() {
     // дз 1a, 4а, 6, 11(a,b), 13(a)(e), 22(a)(b)(ж) 
@@ -818,7 +824,6 @@ int main() {
     //    arr[i][i]++;
     //}
     //out_matrix(arr, out);
-
     //out.close();
 
     //40б
@@ -913,6 +918,7 @@ int main() {
     //delete[] arr;
 
     // Найти максимальный и минимальный элемент в матрице и переставить их местами. 
+    
     //int m, n;
     //cout << "Matrix m*n" << endl;
     //cout << "n = ";
@@ -924,7 +930,6 @@ int main() {
     //int** arr = create_matrix(in, n, m);
     //swap_min_max(arr, n, m);
     //show_matrix(arr, n, m, out);
-
     //for (int i = 0; i < n; i++) {
     //    delete[] arr[i];
     //}
@@ -946,7 +951,329 @@ int main() {
     //for (int i = 0; i < n; i++) 
     //    delete[] arr[i];
     //delete[] arr;
+
+    // Составить вектор из минимальных элементов каждого столбца
+
+    //int n, m;
+    //cout << "Matrix n*m" << endl;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int** arr = create_matrix(in, n, m);
+    //int* ans = arr_min_el(arr, n, m);
+    //for (int i = 0; i < n; i++) {
+    //    cout << ans[i] << " ";
+    //    out << ans[i] << " ";
+    //}
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+    //delete[] ans;
+
+    // Найти скалярное произведение векторов из задач 5 и 6 при условии, что входные матрицы были квадратными. 
+
+    //int n, m;
+    //cout << "Matrix n*m" << endl;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int** arr = create_matrix(in, n, m);
+    //int* ans1 = arr_max_el(arr, n, m);
+    //int* ans2 = arr_min_el(arr, n, m);
+    //int sm = 0;
+    //for (int i = 0; i < n; i++) {
+    //    sm += ans1[i] * ans2[i];
+    //}
+    //out << sm;
+    //cout << sm;
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+    //delete[] ans1;
+    //delete[] ans2;
+
+
+    //Найти минимальный элемент в матрице и переставить строки и столбцы так, чтобы он находился в правом нижнем углу
+    //Найти минимальный элемент в матрице и переставить строки и столбцы так, чтобы он находился в правом нижнем углу
+
+
+    //int n, m;
+    //cout << "Matrix n*m" << endl;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int** arr = create_matrix(in, n, m);
+    //find_min(arr, n, m);
+    //show_matrix(arr, n, m, out);
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+
+    // Умножить вектор на матрицу (матрица не квадратная)
+    
+    //int n, m;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int* vector = new int[n];
+    //for (int i = 0; i < n; i++) {
+    //    in >> vector[i];
+    //}
+    //int** arr = create_matrix(in, n, m);
+    //int** t_arr = T_matrix(arr, n, m);
+    //int* ans = new int[m]();
+    //for (int i = 0; i < m; i++) {
+    //    for (int j = 0; j < n; j++) {
+    //        ans[i] += vector[j] * t_arr[i][j];
+    //    }
+    //}
+    //for (int i = 0; i < m; i++) {
+    //    cout << ans[i] << " ";
+    //    out << ans[i] << " ";
+    //}
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+    //for (int i = 0; i < m; i++)
+    //    delete[] t_arr[i];
+    //delete[] t_arr;
+    //delete[] vector;
+    //delete[] ans;
+
+
+    //Умножить матрицу на вектор (матрица не квадратная)
+
+    //int n, m;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int* vector = new int[m];
+    //for (int i = 0; i < m; i++) {
+    //    in >> vector[i];
+    //}
+    //int** arr = create_matrix(in, n, m);
+    //int* ans = new int[n]();
+    //for (int i = 0; i < n; i++) {
+    //    for (int j = 0; j < m; j++) {
+    //        ans[i] += vector[j] * arr[i][j];
+    //    }
+    //}
+    //for (int i = 0; i < n; i++) {
+    //    cout << ans[i] << " ";
+    //    out << ans[i] << " ";
+    //}
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+    //delete[] vector;
+    //delete[] ans;
+
+    // Проверить, есть ли в матрице строка, состоящая из одних нулей
+
+    //int n, m;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int** arr = create_matrix(in, n, m);
+    //bool fl1 = false;
+    //for (int i = 0; i < n && !fl1; i++) {
+    //    bool fl2 = true;
+    //    for (int j = 0; j < m && fl2; j++) {
+    //        if (arr[i][j] != 0)
+    //            fl2 = false;
+    //    }
+    //    if (fl2)
+    //        fl1 = true;
+    //}
+    //if (fl1)
+    //    cout << "YES";
+    //else
+    //    cout << "NO";
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+
+    // Сосчитать сколько строк в матрице состоят из одних нулей.  
+
+    //int n, m;
+    //int c = 0;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int** arr = create_matrix(in, n, m);
+    //for (int i = 0; i < n; i++) {
+    //    bool fl2 = true;
+    //    for (int j = 0; j < m && fl2; j++) {
+    //        if (arr[i][j] != 0)
+    //            fl2 = false;
+    //    }
+    //    if (fl2)
+    //        c++;
+    //}
+    //cout << c;
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+
+    // Проверить, имеются ли в матрице 2 совпадающих строки
+
+    //int n, m;
+    //int c = 0;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int** arr = create_matrix(in, n, m);
+    //bool flfl = false;
+    //for (int i1 = 0; i1 < n && !flfl; i1++) {
+    //    for (int i2 = i1+1; i2 < n; i2++) {
+    //        bool fl = true;
+    //        for (int j = 0; j < m && fl; j++) {
+    //            if (arr[i1][j] != arr[i2][j])
+    //                fl = false;
+    //        }
+    //        if (fl)
+    //            flfl = true;
+    //    }
+    //}
+    //if (flfl)
+    //    cout << "YES";
+    //else
+    //    cout << "NO";
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+
+    // Проверить, имеется ли в матрице строка, совпадающая с заданным вектором 
+
+    //int n, m;
+    //int c = 0;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int* vector = new int[n];
+    //for (int i = 0; i < n; i++)
+    //    in >> vector[i];
+    //int** arr = create_matrix(in, n, m);
+    //bool flfl = false;
+    //for (int i = 0; i < n && !flfl; i++) {
+    //    bool fl = true;
+    //    for (int j = 0; j < m && fl; j++) {
+    //        if (arr[i][j] != vector[j])
+    //            fl = false;
+    //    }
+    //    if (fl)
+    //        flfl = true;
+    //    
+    //}
+    //if (flfl)
+    //    cout << "YES";
+    //else
+    //    cout << "NO";
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+
+    // Проверить, имеется ли в матрице строка, совпадающая со столбцом (моежт столбец совпадает со столбцом)
+
+    //int n, m;
+    //int c = 0;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int* vector = new int[n];
+    //for (int i = 0; i < n; i++)
+    //    in >> vector[i];
+    //int** arr = create_matrix(in, n, m);
+    //bool flfl = false;
+    //for (int i = 0; i < m && !flfl; i++) {
+    //    bool fl = true;
+    //    for (int j = 0; j < n && fl; j++) {
+    //        if (arr[j][i] != vector[j])
+    //            fl = false;
+    //    }
+    //    if (fl)
+    //        flfl = true;
+    //}
+    //if (flfl)
+    //    cout << "YES";
+    //else
+    //    cout << "NO";
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+
+    
 }
+
+int** T_matrix(int** arr, int n, int m) {
+    int** narr = new int* [m];
+    for (int i = 0; i< m; i++)
+        narr[i] = new int[n];
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++)
+            narr[i][j] = arr[j][i];
+    }
+    return narr;
+}
+
+int* arr_max_el(int** arr, int n, int m) {
+    int* ans = new int[n];
+    for (int i = 0; i < n; i++) {
+        int mx = arr[i][0];
+        for (int j = 0; j < m; j++) {
+            if (mx < arr[i][j]) {
+                mx = arr[i][j];
+            }
+        }
+        ans[i] = mx;
+    }
+    return ans;
+}
+
+int* arr_min_el(int** arr, int n, int m) {
+    int* ans = new int[n];
+    for (int i = 0; i < m; i++) {
+        int mn = arr[0][i];
+        for (int j = 0; j < n; j++) {
+            if (mn > arr[j][i]) {
+                mn = arr[j][i];
+            }
+        }
+        ans[i] = mn;
+    }
+    return ans;
+}
+
 
 void swap_min_max_col(int** arr, int n, int m) {
     int mx = arr[0][0];
@@ -999,6 +1326,31 @@ void swap_min_max(int** arr, int n, int m) {
     int t = arr[mx_id[0]][mx_id[1]];
     arr[mx_id[0]][mx_id[1]] = arr[mn_id[0]][mn_id[1]];
     arr[mn_id[0]][mn_id[1]] = t;
+}
+
+void find_min(int** arr, int n, int m) {
+    int mn = arr[0][0];
+    int mn_id[2] = {0, 0};
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (arr[i][j] < mn) {
+                mn = arr[i][j];
+                mn_id[0] = i;
+                mn_id[1] = j;
+            }
+                
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        int t = arr[i][mn_id[1]];
+        arr[i][mn_id[1]] = arr[i][n-1];
+        arr[i][n - 1] = t;
+    }
+    for (int i = 0; i < m; i++) {
+        int t = arr[mn_id[0]][i];
+        arr[mn_id[0]][i] = arr[m-1][i];
+        arr[m-1][i] = t;
+    }
 }
 
 int find_max(int** arr, int n, int m) {
