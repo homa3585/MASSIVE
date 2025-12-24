@@ -1,9 +1,16 @@
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 using namespace std;
-int const N = 3;
+int const N = 4;
 
+int factorial(int k) {
+    int a = 1;
+    for (int i = 2; i <= k; i++)
+        a *= i;
+    return a;
+}
 double horner(int x, int* arr);
 bool is_simple(int x);
 void Buble_sort(int arr[]);
@@ -30,8 +37,18 @@ void swap_min_max(int** arr, int n, int m);
 void swap_min_max_col(int** arr, int n, int m);
 int* arr_min_el(int** arr, int n, int m);
 int* arr_max_el(int** arr, int n, int m);
-int* matrix_to_vector(int** arr, int* vector, int n, int m);
 int** T_matrix(int** arr, int n, int m);
+int** mult_M_M(int** arr, int** arr2, int n);
+int* simple_mn(int n, int& c);
+int r(int* arr, int c);
+float o(int* arr, int c);
+int f(int* arr, int c);
+int a(int* arr, int n, int c);
+int NOK(int a, int b);
+int NOD(int a, int b);
+
+
+
 
 
 int main() {
@@ -973,6 +990,27 @@ int main() {
     //delete[] arr;
     //delete[] ans;
 
+    // оставить вектор из макс элементов каждого столбца
+
+    //int n, m;
+    //cout << "Matrix n*m" << endl;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "m = ";
+    //cin >> m;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int** arr = create_matrix(in, n, m);
+    //int* ans = arr_max_el(arr, n, m);
+    //for (int i = 0; i < n; i++) {
+    //    cout << ans[i] << " ";
+    //    out << ans[i] << " ";
+    //}
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+    //delete[] ans;
+
     // Найти скалярное произведение векторов из задач 5 и 6 при условии, что входные матрицы были квадратными. 
 
     //int n, m;
@@ -1232,9 +1270,286 @@ int main() {
     //    delete[] arr[i];
     //delete[] arr;
 
+    // 30 а
     
+    //int n;
+    //cout << "n = ";
+    //cin >> n;
+    //ifstream in("INPUT.txt");
+    //int** arr = create_matrix(in, n, n);
+    //int sm = 0;
+    //for (int i = 0; i < n; i++)
+    //    sm += arr[i][i];
+    //cout << sm;
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+    
+    //30 б норма 1
+    
+    //int n;
+    //cout << "n = ";
+    //cin >> n;
+    //ifstream in("INPUT.txt");
+    //int** arr = create_matrix(in, n, n);
+    //int max = 0;
+    //for (int i = 0; i < n; i++) {
+    //    int sm = 0;
+    //    for (int j = 0; j < n; j++) {
+    //        sm += abs(arr[i][j]);
+    //    }
+    //    if (sm > max)
+    //        max = sm;
+    //}
+    //cout << max;
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+
+    // 30 в
+
+    //int n;
+    //cout << "n = ";
+    //cin >> n;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int** arr = create_matrix(in, n, n);
+    //arr = T_matrix(arr, n, n);
+    //show_matrix(arr, n, n, out);
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+
+    // 30 е
+
+    //int n;
+    //cout << "n = ";
+    //cin >> n;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int** arr = create_matrix(in, n, n);
+    //int** arr2 = create_matrix(in, n, n);
+    //int** ans = mult_M_M(arr, arr2, n);
+    //show_matrix(ans, n, n, out);
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr2[i];
+    //delete[] arr2;
+    //for (int i = 0; i < n; i++)
+    //    delete[] ans[i];
+    //delete[] ans;
+
+    // 30 ж
+
+    //int n, k;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "stepen: ";
+    //cin >> k;
+    //ifstream in("INPUT.txt");
+    //ofstream out("OUTPUT.txt");
+    //int** arr = create_matrix(in, n, n);
+    //int** ans = arr;
+    //for (int i = 1; i < k; i++) {
+    //    ans = mult_M_M(ans, arr, n);
+    //}
+    //show_matrix(ans, n, n, out);
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] arr;
+    //for (int i = 0; i < n; i++)
+    //    delete[] ans[i];
+    //delete[] ans;
+
+    // 50 б
+
+    //int n;
+    //cout << "n = ";
+    //cin >> n;
+    //int c = 0;
+    //int* ans = simple_mn(n, c);
+    //for (int i = 0; i < c; i++)
+    //    cout << ans[i] << " ";
+    //delete[] ans;
+
+    // 50 в
+
+    //int n;
+    //cout << "n = ";
+    //cin >> n;
+    //int c = 0;
+    //int* anss = simple_mn(n, c);
+    //int rr = r(anss, c);
+    //float oo = o(anss, c);
+    //int ff = f(anss, c);
+    //int aa = a(anss, n, c);
+    //cout << rr << endl;
+    //cout << oo << endl;
+    //cout << ff << endl;
+    //cout << aa << endl;
+    //delete[] anss;
+
 }
-//пизда нам на кр следующей
+
+int NOD(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+
+int NOK(int a, int b) {
+    return ((a * b) / NOD(a, b));
+}
+
+bool is_simple(int x) {
+    if (x == 2)
+        return true;
+    if (x < 2)
+        return false;
+    if (x % 2 == 0)
+        return false;
+    for (int i = 3; i <= ((x / 2) + 1); i += 2)
+        if (x % i == 0)
+            return false;
+    return true;
+}
+
+int r(int* arr, int c) {
+    if (c == 0) return 1;   
+    int rr = 1;
+    int cc = 1;
+    for (int i = 0; i < c - 1; i++) {
+        if (arr[i] == arr[i + 1]) {
+            cc++;
+        }
+        else {
+            rr *= (cc + 1);
+            cc = 1;
+        }
+            
+    }
+    rr *= (cc + 1);
+    return rr;
+}
+
+float o(int* arr, int c) {
+    int step = 1;
+    int ans = 1;
+    for (int i = 0; i < c - 1; i++) {
+        if (arr[i] == arr[i + 1]) {
+            step *= arr[i];
+        }
+        else {
+            ans *= (step * arr[i] * arr[i] - 1) / (arr[i] - 1);
+            step = 1;
+        }
+
+    }
+    ans *= (step * arr[c - 1] * arr[c - 1] - 1) / (arr[c - 1] - 1);
+    return ans;
+}
+
+int f(int* arr, int c) {
+    int step = 1;
+    int ans = 1;
+    for (int i = 0; i < c - 1; i++) {
+        if (arr[i] == arr[i + 1]) {
+            step *= arr[i];
+        }
+        else {
+            ans *= step * (arr[i] - 1);
+            step = 1;
+        }
+
+    }
+    ans *= step * (arr[c-1] - 1);
+    return ans;
+}
+
+int a(int* arr, int n, int c) {
+    if (n == 2) return 1;
+    if (n == 4) return 2;
+    if (n >= 8) {
+        int nn = n;
+        bool fl = true;
+        while (nn != 1 && fl) {
+            if (nn % 2 != 0)
+                fl = false;
+            nn /= 2;
+        }
+        if (fl)
+            return n / 4;
+    }
+    bool fl = true;
+    for (int i = 0; i < c-1 && fl; i++) {
+        if (arr[i] != arr[i + 1])
+            fl = false;
+    }
+    if (fl)
+        return pow(arr[0], c - 1) * (arr[0] - 1);
+    int* h = new int[c];
+    int step = 1;
+    int cc = 0;
+    for (int i = 0; i < c - 1; i++) {
+        if (arr[i] == arr[i + 1])
+            step *= arr[i];
+        else {
+            h[cc++] = step * arr[i];
+            step = 1;
+        }
+    }
+    h[cc++] = step * arr[c-1];
+    for (int i = 0; i < cc; i++) {
+        int s[1] = { h[i] };
+        h[i] = a(s, h[i], 1);
+    }
+    int result = h[0];
+    for (int i = 1; i < cc; i++) {
+        result = NOK(result, h[i]);
+    }
+    return result;
+}
+
+
+int* simple_mn(int n, int& c) {
+    int* ans = new int[n];
+    while (n % 2 == 0) {
+        n /= 2;
+        ans[c++] = 2;
+    }
+    for (int i = 3; i <= n; i += 2) {
+        if (n % i == 0) {
+            while (n % i == 0) {
+                n /= i;
+                ans[c++] = i;
+            }
+        }
+    }
+    return ans;
+}
+
+int** mult_M_M(int** arr, int** arr2, int n) {
+    int** ans = new  int* [n];
+    for (int i = 0; i < n; i++)
+        ans[i] = new int[n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            ans[i][j] = 0;
+            for (int k = 0; k < n; k++) {
+                ans[i][j] += arr[i][k] * arr2[k][j];
+            }
+        }
+    }
+    return ans;
+}
+
+
 int** T_matrix(int** arr, int n, int m) {
     int** narr = new int* [m];
     for (int i = 0; i< m; i++)
@@ -1261,7 +1576,7 @@ int* arr_max_el(int** arr, int n, int m) {
 }
 
 int* arr_min_el(int** arr, int n, int m) {
-    int* ans = new int[n];
+    int* ans = new int[m];
     for (int i = 0; i < m; i++) {
         int mn = arr[0][i];
         for (int j = 0; j < n; j++) {
@@ -1424,19 +1739,6 @@ double horner(int x, int* arr) {
     }
 
     return result;
-}
-
-bool is_simple(int x) {
-    if (x == 2)
-        return true;
-    if (x < 2)
-        return false;
-    if (x % 2 == 0)
-        return false;
-    for (int i = 3; i <= ((x / 2) + 1); i += 2)
-        if (x % i == 0)
-            return false;
-    return true;
 }
 
 void Buble_sort(int arr[]) {
@@ -1605,7 +1907,7 @@ void sum_mn(int arr1[], int arr2[], int ans[]) {
 }
 
 void raznost_arr(int arr1[], int arr2[], int ans[], int &k) {
-    int i, j, t;
+    int i, j;
     i = j = 0;
     while (i < N && j < N) {
         if (arr1[i] < arr2[j]) {
