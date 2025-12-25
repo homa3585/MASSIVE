@@ -46,6 +46,10 @@ int f(int* arr, int c);
 int a(int* arr, int n, int c);
 int NOK(int a, int b);
 int NOD(int a, int b);
+double* solveSimpleIteration(double** arr, double* B, double* X0, int n, double eps);
+
+
+double AbsNorm(double* arr, int n); 
 
 
 
@@ -834,7 +838,7 @@ int main() {
     
     //int arr[N][N];
     //ofstream out("OUTPUT.txt");
-    //for (int i = 0; i < N; i++) {
+    //for (int i = 0; 33ЦЦЦЦi < N; i++) {
     //    for (int j = 0; j < N; j++) {
     //        arr[i][j] = 0;
     //    }
@@ -1391,6 +1395,49 @@ int main() {
     //cout << aa << endl;
     //delete[] anss;
 
+    // 33
+    
+    //int n;
+    //double eps;
+    //cout << "n = ";
+    //cin >> n;
+    //cout << "eps = ";
+    //cin >> eps;
+    //ifstream in("INPUT.txt");
+    //double** arr = new double* [n];
+    //for (int i = 0; i < n; i++) {
+    //    arr[i] = new double[n];
+    //}
+    //for (int i = 0; i < n; i++)
+    //    for (int j = 0; j < n; j++)
+    //        in >> arr[i][j];
+    //double* B = new double[n];
+    //for (int i = 0; i < n; i++)
+    //    in >> B[i];
+    //double* X0 = new double[n];
+    //for (int i = 0; i < n; i++)
+    //    in >> X0[i];
+    //double* ans = solveSimpleIteration(arr, B, X0, n, eps);
+    //for (int i = 0; i < n; i++)
+    //    cout << ans[i] << " ";
+    //for (int i = 0; i < n; i++)
+    //    delete[] arr[i];
+    //delete[] B;
+    //delete[] X0;
+    
+
+
+    
+
+
+}
+
+double AbsNorm(double* arr, int n) {
+    double sum = 0.0;
+    for (int i = 0; i < n; i++) {
+        sum += fabs(arr[i]);
+    }
+    return sum;
 }
 
 int NOD(int a, int b) {
@@ -1513,7 +1560,46 @@ int a(int* arr, int n, int c) {
     for (int i = 1; i < cc; i++) {
         result = NOK(result, h[i]);
     }
+    delete[] h;
     return result;
+}
+
+double* solveSimpleIteration(double** arr, double* B, double* X0, int n, double eps) {
+    double* X_before = new double[n];  
+    double* X_now = new double[n];  
+    double* diff = new double[n];    
+
+    for (int i = 0; i < n; i++) {
+        X_before[i] = X0[i];
+    }
+    int k = 0;
+    double norm_diff;
+    do {
+        k++;
+
+        for (int i = 0; i < n; i++) {
+            X_now[i] = B[i];  
+            for (int j = 0; j < n; j++) {
+                X_now[i] += arr[i][j] * X_before[j];
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            diff[i] = X_now[i] - X_before[i];
+        }
+
+        norm_diff = AbsNorm(diff, n);
+        for (int i = 0; i < n; i++) {
+            X_before[i] = X_now[i];
+        }
+
+    } while (norm_diff <= eps);
+    delete[] X_before;
+    delete[] diff;
+
+    return X_now;
+
+
 }
 
 
